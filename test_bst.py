@@ -417,6 +417,7 @@ class TestBST(unittest.TestCase):
         self.assertEqual(None, bst._right._right._right)
 
         print("passed test_remove_no_one_sub_without_upt_bl")
+        print("a")
 
 
 if __name__ == '__main__':
