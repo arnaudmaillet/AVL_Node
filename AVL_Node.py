@@ -19,6 +19,13 @@ class AVL_Node:
         height = self.height_balance(HEIGHT)
         root = self
 
+        if val > self._value:
+            if self._right:
+                self._right = self._right.insert(val)
+            else:
+                if not self._right:
+                    height += 1
+                self._right = AVL_Node(val)
         if val < self._value:
             if self._left:
                 self._left = self._left.insert(val)
@@ -27,17 +34,26 @@ class AVL_Node:
                     height += 1
                 self._left = AVL_Node(val)
 
-        if val > self._value:
-            if self._right:
-                self._right = self._right.insert(val)
-            else:
-                if not self._right:
-                    height += 1
-                self._right = AVL_Node(val)
-        
-        height = self.height_balance(HEIGHT)
         self.height_balance(BALANCE)
+        self.rotation(val)
         return root, height
+    
+    ### Rotations ###
+    def rotation(self, val):
+        height = 0
+        if self._balance > 1:
+            if val > self._left._value:
+                self._left = self._left.left_rotation()
+                return height, self.right_rotation()
+            else:
+                return height, self.right_rotation()
+        if self._balance < -1:
+            if val < self._right._value:
+                self._right = self._right.right_rotation()
+                return self.left_rotation(), height
+            else:
+                return self.left_rotation(), height
+
 
     ### Height & Balance ###
     def height_balance(self, param):
