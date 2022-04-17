@@ -1,5 +1,6 @@
-from re import A
-
+### GLobal var ###
+BALANCE = 1
+HEIGHT = 0
 
 class AVL_Node:
     def __init__(self, value):
@@ -15,7 +16,7 @@ class AVL_Node:
         return self.insert_rec(val)[0]
 
     def insert_rec(self, val):
-        height = self.height()
+        height = self.height_balance(HEIGHT)
         root = self
 
         if val < self._value:
@@ -34,30 +35,26 @@ class AVL_Node:
                     height += 1
                 self._right = AVL_Node(val)
         
-        height = self.height()
-        self.set_balance()
+        height = self.height_balance(HEIGHT)
+        self.height_balance(BALANCE)
         return root, height
 
     ### Height & Balance ###
-    def height(self):
+    def height_balance(self, param):
         right_height = 0
         if self._right:
-            right_height = self._right.height()
+            right_height = self._right.height_balance(HEIGHT)
         left_height = 0
         if self._left:
-            left_height = self._left.height()
-        return 1 + max(left_height, right_height)
+            left_height = self._left.height_balance(HEIGHT)
+        if param == HEIGHT:
+            return 1 + max(left_height, right_height)
+        if param == BALANCE:
+            self._balance = left_height - right_height
+        if not param:
+            print("ERR -height_balance- param is missing")
 
-    def set_balance(self):
-        left_height = 0
-        if self._left:
-            left_height = self._left.height()
-        right_height = 0
-        if self._right:
-            right_height = self._right.height()
-        self._balance = left_height - right_height
 
-    
     ### Print Tree ###
     def printTree(self):
         print("")
