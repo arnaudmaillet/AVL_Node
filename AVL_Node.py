@@ -1,4 +1,7 @@
 ### GLobal var ###
+from pickle import GLOBAL
+
+
 BALANCE = 1
 HEIGHT = 0
 NB_ROT = 0
@@ -8,10 +11,6 @@ NB_ROT = 0
 def reset_nb_rot():
     global NB_ROT
     NB_ROT = 0
-
-def increment_nb_rot():
-    global NB_ROT
-    NB_ROT += 1
 
 class AVL_Node:
     def __init__(self, value):
@@ -64,9 +63,10 @@ class AVL_Node:
                 return self.rot_left(), height
             else:
                 return self.rot_left(), height
-        increment_nb_rot()
+        
 
     def rot_left(self):
+        global NB_ROT
         root = self
         tmp = None
 
@@ -75,11 +75,13 @@ class AVL_Node:
             root = self._right
             self._right = tmp
         root._left = self
+        NB_ROT += NB_ROT
         self._balance = 0
         return root
 
 
     def rot_right(self):
+        global NB_ROT
         root = self
         tmp = None
 
@@ -88,6 +90,7 @@ class AVL_Node:
             root = self._left
             self._left = tmp
         root._right = self
+        NB_ROT += NB_ROT
         self._balance = 0
         return root
 

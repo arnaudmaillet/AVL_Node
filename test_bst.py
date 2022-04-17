@@ -145,38 +145,38 @@ class TestBST(unittest.TestCase):
         print("passed test_rot_left")
 
 
-    # def test_rot_right(self):
-    #     ficAvlNode.reset_nb_rot()
-    #     rot = 1
+    def test_rot_right(self):
+        ficAvlNode.reset_nb_rot()
+        rot = 1
 
-    #     bst: AVL_Node = AVL_Node(42)
-    #     bst = bst.insert(69)
-    #     bst = bst.insert(20)
-    #     bst = bst.insert(53)
-    #     bst = bst.insert(80)
-    #     bst = bst.insert(30)
-    #     bst = bst.insert(10)
-    #     bst = bst.insert(1)
-    #     bst = bst.insert(800)
+        bst: AVL_Node = AVL_Node(42)
+        bst = bst.insert(69)
+        bst = bst.insert(20)
+        bst = bst.insert(53)
+        bst = bst.insert(80)
+        bst = bst.insert(30)
+        bst = bst.insert(10)
+        bst = bst.insert(1)
+        bst = bst.insert(800)
 
-    #     bst = bst.rot_right()
+        bst = bst.rot_right()
 
-    #     self.assertEqual(20,  bst._value)
-    #     self.assertEqual(10,  bst._left._value)
-    #     self.assertEqual(1,   bst._left._left._value)
-    #     self.assertEqual(42,  bst._right._value)
-    #     self.assertEqual(30,  bst._right._left._value)
-    #     self.assertEqual(69,  bst._right._right._value)
-    #     self.assertEqual(53,  bst._right._right._left._value)
-    #     self.assertEqual(80,  bst._right._right._right._value)
-    #     self.assertEqual(800, bst._right._right._right._right._value)
+        self.assertEqual(20,  bst._value)
+        self.assertEqual(10,  bst._left._value)
+        self.assertEqual(1,   bst._left._left._value)
+        self.assertEqual(42,  bst._right._value)
+        self.assertEqual(30,  bst._right._left._value)
+        self.assertEqual(69,  bst._right._right._value)
+        self.assertEqual(53,  bst._right._right._left._value)
+        self.assertEqual(80,  bst._right._right._right._value)
+        self.assertEqual(800, bst._right._right._right._right._value)
 
-    #     if BENCHMARK:
-    #         print("test_rot_right", "OK" if ficAvlNode.NB_ROT == rot else "KO")
-    #         print("Votre code a effectué :", ficAvlNode.NB_ROT, "rotations")
-    #         print("L'auteur de la test suite a fait", rot, "rotations\n\n")
+        if BENCHMARK:
+            print("test_rot_right", "OK" if ficAvlNode.NB_ROT == rot else "KO")
+            print("Votre code a effectué :", ficAvlNode.NB_ROT, "rotations")
+            print("L'auteur de la test suite a fait", rot, "rotations\n\n")
 
-    #     print( "\n" + "passed test_rot_right")
+        print( "\n" + "passed test_rot_right")
 
     # def test_balance_without_upt_1(self):
     #     bst: AVL_Node = AVL_Node(6)
