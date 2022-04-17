@@ -16,7 +16,7 @@ class AVL_Node:
     def insert_rec(self, val):
         height = self.height()
         root = self
-        
+
         if val == self._value:
             print("ERR -insert_rec- :", val, "est déja dans l'arbre")
 
@@ -48,6 +48,15 @@ class AVL_Node:
         if self._left:
             left_height = self._left.height()
         return 1 + max(left_height, right_height)
+
+    def set_balance(self):
+        left_height = 0
+        if self._left:
+            left_height = self._left.height()
+        right_height = 0
+        if self._right:
+            right_height = self._right.height()
+        self._balance = left_height - right_height
 
 
     # def insert(self, val) -> 'AVL_Node': # insertion val
