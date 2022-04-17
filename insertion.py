@@ -1,6 +1,3 @@
-from turtle import right
-
-
 class AVL_Node:
     def __init__(self, value):
         self._value = value
@@ -19,6 +16,15 @@ class AVL_Node:
                 return self
             root = self._right
             root.insert(val)
+
+    def height(self):
+        right_height = 0
+        if self._right:
+            right_height = self._right.height()
+        left_height = 0
+        if self._left:
+            left_height = self._left.height()
+        return max(left_height, right_height) + 1
 
 
     # def insert(self, val) -> 'AVL_Node': # insertion val
