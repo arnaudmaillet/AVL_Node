@@ -1,6 +1,17 @@
 ### GLobal var ###
 BALANCE = 1
 HEIGHT = 0
+NB_ROT = 0
+
+### Global func ###
+
+def reset_nb_rot():
+    global NB_ROT
+    NB_ROT = 0
+
+def increment_nb_rot():
+    global NB_ROT
+    NB_ROT += 1
 
 class AVL_Node:
     def __init__(self, value):
@@ -43,16 +54,42 @@ class AVL_Node:
         height = 0
         if self._balance > 1:
             if val > self._left._value:
-                self._left = self._left.left_rotation()
-                return height, self.right_rotation()
+                self._left = self._left.rot_left()
+                return height, self.rot_right()
             else:
-                return height, self.right_rotation()
+                return height, self.rot_right()
         if self._balance < -1:
             if val < self._right._value:
-                self._right = self._right.right_rotation()
-                return self.left_rotation(), height
+                self._right = self._right.rot_right()
+                return self.rot_left(), height
             else:
-                return self.left_rotation(), height
+                return self.rot_left(), height
+        increment_nb_rot()
+
+    def rot_left(self):
+        root = self
+        tmp = None
+
+        if self._right:
+            tmp = self._right._left if self._right._left else self
+            root = self._right
+            self._right = tmp
+        root._left = self
+        self._balance = 0
+        return root
+
+
+    def rot_right(self):
+        root = self
+        tmp = None
+
+        if self._left:
+            tmp = self._left._right if self._left._right else self
+            root = self._left
+            self._left = tmp
+        root._right = self
+        self._balance = 0
+        return root
 
 
     ### Height & Balance ###
