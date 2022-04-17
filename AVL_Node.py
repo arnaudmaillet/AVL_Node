@@ -46,8 +46,10 @@ class AVL_Node:
                 self._left = AVL_Node(val)
 
         self.height_balance(BALANCE)
-        self.rotation(val)
-        return root, height
+        if self._balance <= 1 and self._balance >= -1:
+            return root, height
+        else:
+            return self.rotation(val)
     
     ### Rotations ###
     def rotation(self, val):
@@ -55,9 +57,9 @@ class AVL_Node:
         if self._balance > 1:
             if val > self._left._value:
                 self._left = self._left.rot_left()
-                return height, self.rot_right()
+                return self.rot_right(), height
             else:
-                return height, self.rot_right()
+                return self.rot_right(), height
         if self._balance < -1:
             if val < self._right._value:
                 self._right = self._right.rot_right()

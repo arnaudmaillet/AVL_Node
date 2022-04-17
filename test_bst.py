@@ -178,16 +178,15 @@ class TestBST(unittest.TestCase):
 
         print( "\n" + "passed test_rot_right")
 
-    # def test_balance_without_upt_1(self):
-    #     bst: AVL_Node = AVL_Node(6)
-    #     bst = bst.insert(4)
-    #     bst = bst.insert(5)
+    def test_balance_without_upt_1(self):
+        bst: AVL_Node = AVL_Node(6)
+        bst = bst.insert(4)
+        bst = bst.insert(5)
+        self.assertEqual(5, bst._value)
+        self.assertEqual(6, bst._right._value)
+        self.assertEqual(4, bst._left._value)
 
-    #     self.assertEqual(5, bst._value)
-    #     self.assertEqual(6, bst._right._value)
-    #     self.assertEqual(4, bst._left._value)
-
-    #     print("passed test_balance_without_upt_1")
+        print("passed test_balance_without_upt_1")
 
     # def test_balance_without_upt_2(self):
     #     bst: AVL_Node = AVL_Node(6)
