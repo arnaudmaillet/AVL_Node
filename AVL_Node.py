@@ -24,7 +24,8 @@ class AVL_Node:
     def insert(self, val):
         if not self._value:
             self._value = AVL_Node(val)
-        return self.insert_rec(val)[0]
+        root = self.insert_rec(val)[0]
+        return root
 
     def insert_rec(self, val):
         height = self.height_balance(HEIGHT)
@@ -45,11 +46,13 @@ class AVL_Node:
                     height += 1
                 self._left = AVL_Node(val)
 
-        self.height_balance(BALANCE)
-        if self._balance <= 1 and self._balance >= -1:
-            return root, height
-        else:
-            return self.rotation(val)
+        self._balance = self.height_balance(BALANCE)
+        if self._balance > 1 or self._balance < -1:
+            root, height = self.rotation(val)
+            root._balance = 0
+            root._right._balance = 0
+            root._left._balance = 0
+        return root, height
     
     ### Rotations ###
     def rotation(self, val):
@@ -77,7 +80,6 @@ class AVL_Node:
             root = self._right
             self._right = tmp
         root._left = self
-        self._balance = 0
         increment_nb_rot()
         return root
 
@@ -91,7 +93,6 @@ class AVL_Node:
             root = self._left
             self._left = tmp
         root._right = self
-        self._balance = 0
         increment_nb_rot()
         return root
 
@@ -107,7 +108,7 @@ class AVL_Node:
         if param == HEIGHT:
             return 1 + max(left_height, right_height)
         if param == BALANCE:
-            self._balance = left_height - right_height
+            return left_height - right_height
         if not param:
             print("ERR -height_balance- param is missing")
 
