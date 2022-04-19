@@ -115,22 +115,6 @@ class AVL_Node:
         return node
 
 
-    ### Height & Balance ###
-    def height_balance(self, param):
-        right_height = 0
-        if self._right:
-            right_height = self._right.height_balance(HEIGHT)
-        left_height = 0
-        if self._left:
-            left_height = self._left.height_balance(HEIGHT)
-        if param == HEIGHT:
-            return 1 + max(left_height, right_height)
-        if param == BALANCE:
-            return left_height - right_height
-        if not param:
-            print("ERR -height_balance- param is missing")
-
-
     ### Print Tree ###
     def printTree(self):
         print("")
