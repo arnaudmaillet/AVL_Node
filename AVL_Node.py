@@ -157,4 +157,7 @@ class AVL_Node:
         print(self._value)
         if self._right:
             self._right.printTree_rec()
+<<<<<<< HEAD
             self._right.printTree_rec()
+=======
+>>>>>>> 0ef5faf565f2bb4b5873f40ca91d0847ab47fa06
