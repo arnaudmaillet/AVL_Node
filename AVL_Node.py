@@ -129,6 +129,7 @@ class AVL_Node:
         if not val:
             return False
         root = self.delete_rec(val)[0]
+        self._balance = self.balance()
         return root
 
     
