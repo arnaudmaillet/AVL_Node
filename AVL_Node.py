@@ -10,7 +10,10 @@ def increment_nb_rot():
     global NB_ROT
     NB_ROT += 1
 
+######################
 ### CLass AVL_Node ###
+######################
+
 class AVL_Node:
     def __init__(self, value):
         self._value = value
@@ -41,7 +44,10 @@ class AVL_Node:
         return l_node - r_node
 
 
-    ### Insertion ###
+    ######################
+    ###    Insertion   ###
+    ######################
+
     def insert(self, val):
         if not val:
             return False
@@ -114,8 +120,15 @@ class AVL_Node:
         increment_nb_rot()
         return node
 
+    
+    ######################
+    ###     Remove     ###
+    ######################
 
-    ### Print Tree ###
+
+    ######################
+    ###     Print      ###
+    ######################
     def printTree(self):
         print("")
         self.printTree_rec()
