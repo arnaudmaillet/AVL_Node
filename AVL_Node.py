@@ -125,6 +125,24 @@ class AVL_Node:
     ###     Remove     ###
     ######################
 
+    def delete(self, val):
+        if not val:
+            return False
+        root = self.delete_rec(val)[0]
+        return root
+
+    
+    def delete_rec(self, val):
+        if val > self._value:
+            if self._right:
+                self._right = self._right.delete(val)
+        if val < self._value:
+            if self._left:
+                self._left = self._left.delete(val)
+        if val == self._value:
+            self == None
+        return self.rot_cases(), self.height()
+        
 
     ######################
     ###     Print      ###
