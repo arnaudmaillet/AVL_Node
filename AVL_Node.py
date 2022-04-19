@@ -140,7 +140,11 @@ class AVL_Node:
             if self._left:
                 self._left = self._left.delete(val)
         if val == self._value:
-            self == None
+            if not self._left:
+                return self._right, self.height()
+            if not self._right:
+                return self._left, self.height()
+
         return self.rot_cases(), self.height()
         
 
@@ -157,7 +161,3 @@ class AVL_Node:
         print(self._value)
         if self._right:
             self._right.printTree_rec()
-<<<<<<< HEAD
-            self._right.printTree_rec()
-=======
->>>>>>> 0ef5faf565f2bb4b5873f40ca91d0847ab47fa06
