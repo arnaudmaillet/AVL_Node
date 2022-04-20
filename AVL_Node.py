@@ -6,37 +6,33 @@ def reset_nb_rot():
     global NB_ROT
     NB_ROT = 0
 
-def increment_nb_rot():
-    global NB_ROT
-    NB_ROT += 1
-
 ######################
 ### CLass AVL_Node ###
 ######################
 
 class AVL_Node:
     def __init__(self, value):
-        self._value = value
-        self._left = None
-        self._right = None
-        self._balance = 0
+        self._value: 'int' = value
+        self._left: 'AVL_Node' = None
+        self._right: 'AVL_Node' = None
+        self._balance : 'int' = 0
 
-    def height(self):
+    def height(self)->'int':
         if not self:
             return 0
-        r_node = 0
-        l_node = 0
+        r_node: 'int' = 0
+        l_node: 'int' = 0
         if self._right:
             r_node = self._right.height()
         if self._left:
             l_node = self._left.height()
         return 1 + max(r_node, l_node)
 
-    def balance(self):
+    def balance(self)->'int':
         if not self:
             return 0
-        r_node = 0
-        l_node = 0
+        r_node: 'int' = 0
+        l_node: 'int' = 0
         if self._right:
             r_node = self._right.height()
         if self._left:
@@ -48,13 +44,13 @@ class AVL_Node:
     ###    Insertion   ###
     ######################
 
-    def insert(self, val):
+    def insert(self, val)->'AVL_Node':
         if not val:
             return False
-        root = self.insert_rec(val)[0]
+        root: 'AVL_Node' = self.insert_rec(val)[0]
         return root
 
-    def insert_rec(self, val):
+    def insert_rec(self, val)->('AVL_Node', 'int'):
         if not self._value:
             self._value = AVL_Node(val)
 
@@ -73,21 +69,21 @@ class AVL_Node:
     
     ### Rotations ###
 
-    def leftleft(self):
+    def leftleft(self)->'AVL_Node':
         return self.rot_right()
     
-    def leftright(self):
+    def leftright(self)->'AVL_Node':
         self._left = self._left.rot_left()
         return self.leftleft()
 
-    def rightright(self):
+    def rightright(self)->'AVL_Node':
         return self.rot_left()
     
-    def rightleft(self):
+    def rightleft(self)->'AVL_Node':
         self._right = self._right.rot_right()
         return self.rightright()
 
-    def rot_cases(self):
+    def rot_cases(self)->'AVL_Node':
         if self._balance == 2:
             if self._left._left:
                 return self.leftleft()
@@ -101,23 +97,25 @@ class AVL_Node:
         return self
         
 
-    def rot_left(self):
-        node = self._right
+    def rot_left(self)->'AVL_Node':
+        global NB_ROT
+        node: 'AVL_Node' = self._right
         self._right = node._left
         node._left = self
         node._balance = 0
         self._balance = self.balance()
-        increment_nb_rot()
+        NB_ROT += 1
         return node
 
 
-    def rot_right(self):
-        node = self._left
+    def rot_right(self)->'AVL_Node':
+        global NB_ROT
+        node: 'AVL_Node' = self._left
         self._left = node._right
         node._right = self
         node._balance = 0
         self._balance = self.balance()
-        increment_nb_rot()
+        NB_ROT += 1
         return node
 
     
@@ -125,10 +123,10 @@ class AVL_Node:
     ###     Remove     ###
     ######################
 
-    def delete(self, val):
+    def delete(self, val)->'AVL_Node':
         if not val:
             return False
-        root = self.delete_rec(val)[0]
+        root: 'AVL_Node' = self.delete_rec(val)[0]
         self._balance = self.balance()
         return root
 
